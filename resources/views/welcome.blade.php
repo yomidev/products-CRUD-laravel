@@ -8,6 +8,7 @@
 </head>
 <body>
     <a href="{{ route('prueba','hola1') }}">Prueba</a>
+    <a href="{{ route('category.index') }}">Categorias</a>
     <table>
         <thead>
             <tr>
