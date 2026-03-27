@@ -8,9 +8,10 @@ use App\Models\Product;
 class IndexController extends Controller
 {
     public function index(){
+        $title = "Productos";
         $products = Product::all(); //Select * from products
         //dd($products);
-        return view('welcome',compact('products'));
+        return view('welcome',compact('products', 'title'));
     }
     public function prueba($id){
         $message = $id;
@@ -23,4 +24,9 @@ class IndexController extends Controller
         $title = $product->name;
         return view('detalles', compact('product', 'title'));
     }
+    public function create (){
+        $title='agregar producto';
+        return view('products.create',compact('title'));
+    }
 }
+

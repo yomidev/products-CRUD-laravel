@@ -8,7 +8,8 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index() {
+        $title = "Categorias";
         $category=Category::all();
-        return view('category.index', compact('category'));
+        return view('category.index', compact('category', 'title'));
     }
 }
