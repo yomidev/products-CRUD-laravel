@@ -28,5 +28,15 @@ class IndexController extends Controller
         $title='agregar producto';
         return view('products.create',compact('title'));
     }
+
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:100',
+            'stock' => 'required|numeric|min:1'
+        ]);
+
+        return back()->with('success', '¡Producto guardado correctamente!');
+    }
 }
 
