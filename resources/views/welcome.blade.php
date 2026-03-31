@@ -5,6 +5,9 @@
         <h1 class="text-2xl font-semibold">Lista de Productos</h1>
         <a href="{{ route('products.create') }}" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">+ Agregar Producto</a>
     </div>
+    @if(session('success'))
+        <div class="bg-green-600 p-2 text-white rounded">{{session('success')}}</div>
+    @endif
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="min-w-full text-left text-gray-600">
             <thead class="bg-gray-100 uppercase text-gray-700 p-5">

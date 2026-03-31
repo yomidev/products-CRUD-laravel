@@ -23,10 +23,16 @@
             <div class="flex-1">
                 <label for="price" class="block text-sm font-medium text-gray-700">Precio del producto<span class="text-red-800">*</span></label>
                 <input type="text" id="price" name="price" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Ej. 121.50">
+                @error('price')
+                    <span class="text-red-500 text-xs block mt-2 font-bold">{{$message}}</span>
+                @enderror
             </div>
             <div class="flex-1">
                 <label for="stock" class="block text-sm font-medium text-gray-700">Stock<span class="text-red-800">*</span></label>
                 <input type="number" id="stock" name="stock" class="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Ej. 20">
+                @error('stock')
+                    <span class="text-red-500 text-xs block mt-2 font-bold">{{$message}}</span>
+                @enderror
             </div>
         </div>
         <div>

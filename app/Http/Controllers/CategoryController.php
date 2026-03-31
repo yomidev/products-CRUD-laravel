@@ -12,4 +12,10 @@ class CategoryController extends Controller
         $category=Category::all();
         return view('category.index', compact('category', 'title'));
     }
+
+    public function create (){
+        $title = "Crear Categoria";
+        return view('category.create', compact('title'));
+
+    }
 }
