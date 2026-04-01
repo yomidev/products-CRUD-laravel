@@ -5,6 +5,10 @@
         <h1 class="text-2xl font-semibold">Lista Categorias</h1>
         <a href="{{ route('category.create') }}" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">+ Agregar Categoria</a>
     </div>
+
+    @if(session('success'))
+            <div class="p-3 bg-green-100 text-green-700 rounded-md">{{session('success')}}</div>
+        @endif
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="min-w-full text-left text-gray-600">
             <thead class="bg-gray-100 uppercase text-gray-700 p-5">
