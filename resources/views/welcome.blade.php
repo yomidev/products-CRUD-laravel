@@ -15,6 +15,7 @@
                     <th class="px-6 py-3 w-10">ID</th>
                     <th class="px-6 py-3 w-100">Nombre</th>
                     <th class="px-6 py-3 w-1/3">Descripción</th>
+                    <th class="px-6 py-3 w-10">Categoria</th>
                     <th class="px-6 py-3 w-10">Precio</th>
                     <th class="px-6 py-3 w-10">Stock</th>
                     <th class="px-6 py-3">Opciones</th>
@@ -26,6 +27,7 @@
                     <td class="px-6 py-4">{{$product->id}}</td>
                     <td class="px-6 py-4">{{$product->name}}</td>
                     <td class="px-6 py-4">{{$product->description}}</td>
+                    <td class="px-6 py-4">{{$product->category->Name}}</td>
                     <td class="px-6 py-4">${{$product->price}}</td>
                     <td class="px-6 py-4">{{$product->stock}}</td>
                     <td class="px-6 py-4">

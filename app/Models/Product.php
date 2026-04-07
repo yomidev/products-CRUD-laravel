@@ -15,6 +15,16 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'stock'
+        'stock',
+        'id_category',
     ];
+
+    public function category(){
+        return $this->belongsTo(Category::class, 'id_category');
+    }
+
+    public function saleDetails(){
+        return $this->hasMany(SaleDetail::class);
+    }
+
 }

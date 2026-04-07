@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class IndexController extends Controller
 {
     public function index(){
         $title = "Productos";
-        $products = Product::all(); //Select * from products
+        $products = Product::with('category')->get();
         //dd($products);
         return view('welcome',compact('products', 'title'));
     }
@@ -26,7 +27,8 @@ class IndexController extends Controller
     }
     public function create (){
         $title='agregar producto';
-        return view('products.create',compact('title'));
+        $categories = Category::all();
+        return view('products.create',compact('title', 'categories'));
     }
 
     public function store(Request $request){
@@ -52,6 +54,7 @@ class IndexController extends Controller
         $producto->description = $request->description;
         $producto->price = $request->price;
         $producto->stock = $request->stock;
+        $producto->id_category = $request->category;
         $producto->save();
 
         return redirect()->route('index')->with('success', '¡Producto guardado correctamente!');

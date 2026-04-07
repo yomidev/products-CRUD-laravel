@@ -34,6 +34,15 @@
                     <span class="text-red-500 text-xs block mt-2 font-bold">{{$message}}</span>
                 @enderror
             </div>
+            <div>
+                <label for="category">Selecciona una categoría</label>
+                <select name="category" id="category">
+                    <option value="">Selecciona una opción</option>
+                    @foreach ($categories as $category )
+                        <option value="{{ $category->id }}">{{$category->Name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div>
             <button type="submit" class="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Guardar Producto</button>
