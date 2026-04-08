@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Models\Category;
 
 Route::get("/", [IndexController::class, 'index'])->name('index');
 Route::get("/prueba/{id}", [IndexController::class, 'prueba'])->name('prueba');
@@ -12,3 +13,7 @@ Route::get("/categories",[CategoryController::class,'index'])->name('category.in
 Route::post("/product/store", [IndexController::class, 'store'])->name("products.store");
 Route::get("/category/create",[CategoryController::class,'create'])->name("category.create");
 Route::post("/category/store", [CategoryController::class,'store'])->name('category.store');
+Route::get("/product/{id}/edit", [IndexController::class, 'edit'])->name('product.edit');
+Route::put("/product/{id}/edit", [IndexController::class, 'update'])->name('product.update');
+Route::get("/category/{id}/edit", [CategoryController::class, 'edit'])->name('Category.edit');
+Route::put("/category/{id}/edit", [CategoryController::class, 'update'])->name('Category.update');

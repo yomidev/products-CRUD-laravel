@@ -12,15 +12,16 @@
                 </svg>
             </div>
             <h2 class="text-3xl font-extrabold bg-linear-to-r from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-600 bg-clip-text text-transparent">
-                Agregar Nuevo Producto
+               Editar Producto {{ $product->name }}
             </h2>
             <p class="mt-2 text-gray-600 dark:text-gray-600">Completa la información del producto para agregarlo al inventario</p>
         </div>
 
         <!-- Form Card -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-            <form action="{{ route('products.store') }}" method="POST" class="p-6 sm:p-8 space-y-6">
+            <form action="{{ route('product.update', $product->id) }}" method="POST" class="p-6 sm:p-8 space-y-6">
                 @csrf
+                @method('PUT')
 
                 <!-- Success Message -->
                 @if(session('success'))
@@ -47,7 +48,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                             </svg>
                         </div>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}"
+                        <input type="text" id="name" name="name" value="{{ $product->name }}"
                                class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm 
                                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
                                       dark:bg-gray-700 dark:text-gray-100 transition-all duration-200
@@ -75,7 +76,7 @@
                                   class="block w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm 
                                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
                                          dark:bg-gray-700 dark:text-gray-100 resize-y transition-all duration-200"
-                                  placeholder="Describe las características del producto...">{{ old('description') }}</textarea>
+                                  placeholder="Describe las características del producto...">{{$product->description}}</textarea>
                     </div>
                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Máximo 500 caracteres</p>
                 </div>
@@ -92,7 +93,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span class="text-gray-500 dark:text-gray-400 font-medium">$</span>
                             </div>
-                            <input type="number" step="0.01" id="price" name="price" value="{{ old('price') }}"
+                            <input type="number" step="0.01" id="price" name="price" value="{{ $product->price }}"
                                    class="block w-full pl-8 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm 
                                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
                                           dark:bg-gray-700 dark:text-gray-100 transition-all duration-200
@@ -115,7 +116,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                                 </svg>
                             </div>
-                            <input type="number" id="stock" name="stock" value="{{ old('stock') }}"
+                            <input type="number" id="stock" name="stock" value="{{ $product->stock }}"
                                    class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm 
                                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
                                           dark:bg-gray-700 dark:text-gray-100 transition-all duration-200
@@ -141,7 +142,7 @@
                                            @error('category') border-red-500 dark:border-red-500 @enderror">
                                 <option value="">Selecciona una categoría</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ $product->id_category == $category->id ? 'selected' : '' }}>
                                         {{ $category->Name }}
                                     </option>
                                 @endforeach
@@ -182,7 +183,7 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        Guardar Producto
+                        Actualizar Producto
                     </button>
                     
                     <a href="{{ route('index') }}" 
