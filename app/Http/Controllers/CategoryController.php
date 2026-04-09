@@ -36,4 +36,28 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success','categoria guardada correctamente');
         
     }
+    public function edit($id){
+        $category=Category::findOrFail($id);
+        $title = "Editar categoria";
+        return view('category.edit',compact('category', 'title'));
+    }
+
+    public function update($id, Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ],
+        [
+            'name.required'=>'nombre de la categoria es requerido',
+            'name.string'=>'el nombre debe ser texto',
+            'name.max'=>'el numero de caracteres permitido es 255'
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->Name = $request->name;
+        $category->Description = $request->description;
+        $category->save();
+
+        return redirect()->route('category.index')->with('success','categoria actualizada');
+        
+    }
 }

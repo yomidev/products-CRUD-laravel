@@ -24,7 +24,7 @@
                 <tr class="border-b hover:bg-gray-50 transition">
                     <td class="px-6 py-4">{{$category->id}}</td>
                     <td class="px-6 py-4">{{$category->Name}}</td>
-                    <td class="px-6 py-4">{{$category->description}}</td>
+                    <td class="px-6 py-4">{{$category->Description}}</td>
                     <td class="px-6 py-4">
                         <a href="" class="inline-block bg-green-800 text-white p-3 rounded-xl text-center font-semibold cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
