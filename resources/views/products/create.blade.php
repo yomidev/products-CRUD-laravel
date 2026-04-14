@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Agregar Producto')
 @include('layouts.partials.navbar')
 
 @section('contenido')

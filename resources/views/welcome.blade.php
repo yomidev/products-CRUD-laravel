@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Producto de Prueba')
 @include('layouts.partials.navbar')
 
 @section('contenido')
@@ -121,14 +122,18 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                 </svg>
                             </a>
-
-                            <button type="button" 
+                            <button onclick="confirmDelete({{ $product->id }})"
                                     class="p-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-200" 
                                     title="Eliminar producto">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
                             </button>
+                            <form action="{{ route('product.delete', $product->id) }}" method="POST" id="delete-product-{{ $product->id }}">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            
                         </div>
                     </td>
                 </tr>
@@ -154,7 +159,24 @@
         </table>
     </div>
 </div>
-
+<script>
+    function confirmDelete(id){
+        Swal.fire({
+            title: "Eliminar",
+            text: "Estas seguro de eliminar el producto?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '3085d6',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if(result.isConfirmed){
+                document.getElementById('delete-product-'+id).submit();
+            }
+        });
+    }
+</script>
 <style>
     /* Smooth transitions */
     .transition-all {

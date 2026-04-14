@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AuthController;
 use App\Models\Category;
 
 Route::get("/", [IndexController::class, 'index'])->name('index');
@@ -17,3 +18,8 @@ Route::get("/product/{id}/edit", [IndexController::class, 'edit'])->name('produc
 Route::put("/product/{id}/edit", [IndexController::class, 'update'])->name('product.update');
 Route::get("/category/{id}/edit", [CategoryController::class, 'edit'])->name('Category.edit');
 Route::put("/category/{id}/edit", [CategoryController::class, 'update'])->name('Category.update');
+Route::delete('/product/{id}/delete', [IndexController::class, 'delete'])->name('product.delete');
+
+
+Route::get("/login", [AuthController::class, 'index'])->name('login');
+Route::post("/login", [AuthController::class, 'login'])->name('iniciar_sesion');

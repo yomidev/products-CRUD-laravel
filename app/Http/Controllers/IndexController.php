@@ -99,7 +99,13 @@ class IndexController extends Controller
         $producto->save();
 
         return redirect()->route('index')->with('success', '¡Producto actualizado correctamente!');
+    }
 
+    public function delete($id){
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->back()->with('success','Producto eliminado correctamente');
     }
 }
 
